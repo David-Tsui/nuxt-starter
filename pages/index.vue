@@ -1,34 +1,41 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">nuxt-starter</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <h1 class="title">Events</h1>
+    <EventCard
+      v-for="(event, index) in events"
+      :key="index"
+      :event="event"
+      :data-index="index"
+    />
   </div>
 </template>
+<script>
+import EventCard from '@/components/EventCard.vue'
+import { mapState } from 'vuex' // <--- To map event
 
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({})
+export default {
+  components: {
+    EventCard,
+  },
+  async fetch({ store, error }) {
+    try {
+      await store.dispatch('events/fetchEvents')
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch events events at this time',
+      })
+    }
+  },
+  head() {
+    return {
+      title: 'Event Listing',
+    }
+  },
+  computed: mapState({
+    events: (state) => state.events.events,
+  }),
+}
 </script>
 
 <style>
@@ -40,8 +47,7 @@ export default Vue.extend({})
   align-items: center;
   text-align: center;
 }
-
-.title {
+h1.title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;

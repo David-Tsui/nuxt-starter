@@ -1,4 +1,5 @@
 export default {
+  target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-starter',
@@ -37,6 +38,11 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+
+  /*
+   ** Customize the progress-bar color
+   */
+  loading: { color: '#39b982' },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
