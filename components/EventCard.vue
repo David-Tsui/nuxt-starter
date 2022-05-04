@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="'/event/' + event.id">
-    <div class="-shadow bg-gray-100">
+    <div class="card animate__animated animate__bounceIn -shadow bg-gray-100">
       <span class="eyebrow"> @{{ event.time }} on {{ parsedDate }} </span>
       <h4 class="title">
         {{ event.title }}
