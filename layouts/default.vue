@@ -22,6 +22,12 @@ export default {
             'Where you can find all the events taking place in your neighborhood',
         },
       ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+        },
+      ],
     }
   },
 }

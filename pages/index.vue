@@ -1,37 +1,34 @@
 <template>
   <div>
-    <h1 class="title">Events</h1>
-    <EventCard
-      v-for="(event, index) in events"
-      :key="index"
-      :event="event"
-      :data-index="index"
-    />
+    <h1 class="title">Examples</h1>
+    <nuxt-link :to="'/examples/example1'" no-prefetch>
+      <p>Example 1 - default</p>
+    </nuxt-link>
+    <nuxt-link :to="'/examples/example2'" no-prefetch>
+      <p>Example 2 - lazy load</p>
+    </nuxt-link>
   </div>
 </template>
 <script>
-import EventCard from '@/components/EventCard.vue'
 import { mapState } from 'vuex' // <--- To map event
 
 export default {
-  components: {
-    EventCard,
-  },
-  async fetch({ store, error }) {
-    try {
-      await store.dispatch('events/fetchEvents')
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch events events at this time',
-      })
-    }
-  },
-  head() {
-    return {
-      title: 'Event Listing',
-    }
-  },
+  components: {},
+  // async fetch({ store, error }) {
+  //   try {
+  //     await store.dispatch('events/fetchEvents')
+  //   } catch (e) {
+  //     error({
+  //       statusCode: 503,
+  //       message: 'Unable to fetch events events at this time',
+  //     })
+  //   }
+  // },
+  // head() {
+  //   return {
+  //     title: 'Event Listing',
+  //   }
+  // },
   computed: mapState({
     events: (state) => state.events.events,
   }),
